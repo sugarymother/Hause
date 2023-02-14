@@ -31,5 +31,7 @@ build/
 ### VS Code ###
 .vscode/
 
-#log目录
+### log目录 ###
 log/
+### 图片上传目录 ###
+picUpload/
