@@ -27,6 +27,13 @@ public interface HouseService {
     void deleteHouse(Long houseId);
 
     /**
+     * 更新出租房
+     * @param houseId 出租房id
+     * @param form 出租房信息表单
+     */
+    void updateHouse(Long houseId, HouseInfoForm form);
+
+    /**
      * 获取房子列表
      * @param type 查找类型：所有/我发布的/我的收藏
      * @param sortKey 排序基准：按时间/按价格
@@ -37,7 +44,7 @@ public interface HouseService {
      * @param keyword 匹配关键词，如无需匹配关键词，此处填null
      * @return 房子信息列表
      */
-    List<HouseListView> getHouseList(Get type, SortBy sortKey, Order order,
+    List<HouseListView> getHouseList(ListOf type, SortBy sortKey, Order order,
                                      int pageNum, int pageSize,
                                      String token, String keyword);
 
@@ -58,10 +65,21 @@ public interface HouseService {
     /**
      * 获取租房列表的类型
      */
-    enum Get {
-        ALL_HOUSE,    // 所有房子
-        MY_HOUSE,     // 我发布的房子
-        FAVOR_HOUSE,  // 我收藏的房子
+    enum ListOf {
+        ALL_HOUSE("all"),      // 所有房子
+        MY_HOUSE("my"),        // 我发布的房子
+        FAVOR_HOUSE("favor"),  // 我收藏的房子
+        ;
+
+        private final String type;
+
+        ListOf(String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
     }
 
     /**

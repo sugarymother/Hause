@@ -30,7 +30,7 @@ public class JwtUtil {
      * @param userId 用户id
      * @return 令牌
      */
-    public static String signToken(Integer userId) {
+    public static String signToken(Long userId) {
         try {
             //签发时间
             Date issuedAt = new Date();
@@ -80,8 +80,8 @@ public class JwtUtil {
      * @param token 令牌
      * @return 负载的用户id
      */
-    public static Integer getChaimUserId(String token) {
-        return Integer.parseInt(JWT.decode(token).getClaim("UserId").asString());
+    public static Long getChaimUserId(String token) {
+        return Long.parseLong(JWT.decode(token).getClaim("UserId").asString());
     }
 
 }

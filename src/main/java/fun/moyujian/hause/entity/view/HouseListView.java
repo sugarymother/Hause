@@ -28,7 +28,7 @@ public class HouseListView {
 
     private String addr;
 
-    private String price;
+    private Double price;
 
     private String towards;
 

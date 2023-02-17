@@ -17,6 +17,10 @@ import java.util.UUID;
 
 /**
  * 加密工具类
+ *
+ * 使用AES对称加密，密文使用base64编码为字符串输出
+ * ps：实际上不建议使用对称加密来加密密码，密码加密应使用不可逆的方式
+ *
  * @author WSharkCoder
  * @date 2021/1/30 11:26
  */
@@ -26,6 +30,7 @@ public class EncryptUtil {
      * 对称加密密匙种子
      */
     private static final String KEY_SEED = "moyujian";
+
     /**
      * 密匙
      **/
@@ -33,8 +38,8 @@ public class EncryptUtil {
 
     /**
      * 加密
-     * @param info 要加密的内容
-     * @return 加密后的内容
+     * @param info 原文文本
+     * @return 密文，base64字符串形式
      */
     public static String encrypt(String info) {
         try {
@@ -42,7 +47,7 @@ public class EncryptUtil {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, getKey());
             byte[] bytResult = cipher.doFinal(info.getBytes(StandardCharsets.UTF_8));
-            //Base64转码
+            //Base64编码
             return Base64.getEncoder().encodeToString(bytResult);
         } catch (Exception e) {
             log.error("加密工具类>AES加密异常:{}", e.getMessage());
@@ -52,12 +57,12 @@ public class EncryptUtil {
 
     /**
      * 解密
-     * @param info 要解密的内容
-     * @return 解密后内容
+     * @param info base64密文字符串
+     * @return 原文文本
      */
     public static String decrypt(String info) {
         try {
-            //生成AEC加密实例
+            //生成AES加密实例
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, getKey());
             byte[] bytInfo = Base64.getDecoder().decode(info.getBytes(StandardCharsets.UTF_8));
@@ -75,7 +80,7 @@ public class EncryptUtil {
      */
     public static Key getKey() throws NoSuchAlgorithmException {
         if (key == null) {
-            //AEC 加密密匙长度必须128
+            //AES 加密密匙长度必须128
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
             //设置密匙种子

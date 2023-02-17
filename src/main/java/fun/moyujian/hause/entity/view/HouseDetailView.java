@@ -2,6 +2,7 @@ package fun.moyujian.hause.entity.view;
 
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class HouseDetailView {
 
     private String addr;
 
-    private String price;
+    private Double price;
 
     private String towards;
 
@@ -42,7 +43,7 @@ public class HouseDetailView {
     /**
      * 最后更新时间
      */
-    private String updateTime;
+    private Date updateTime;
 
     /**
      * 图片url列表

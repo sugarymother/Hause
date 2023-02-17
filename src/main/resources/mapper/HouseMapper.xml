@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.moyujian.hause.mapper.HouseMapper">
+
+    <resultMap id="HouseDetailMap" type="fun.moyujian.hause.entity.view.HouseDetailView">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="specs" column="specs"/>
+        <result property="area" column="area"/>
+        <result property="floor" column="floor"/>
+        <result property="type" column="type"/>
+        <result property="addr" column="addr"/>
+        <result property="price" column="price"/>
+        <result property="towards" column="towards"/>
+        <result property="community" column="community"/>
+        <result property="description" column="description"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="pubUserInfo" javaType="userInfoView">
+            <result property="username" column="username"/>
+            <result property="phone" column="phone"/>
+            <result property="wechat" column="wechat"/>
+        </association>
+        <collection property="picUrlList" ofType="java.lang.String" column="id" select="selectHousePicList"/>
+    </resultMap>
+
+    <insert id="insertHousePics">
+        INSERT INTO house_pic (url, house_id)
+        VALUES
+        <foreach collection="picUrlList" item="picUrl" separator=",">
+            (#{picUrl}, #{houseId})
+        </foreach>
+    </insert>
+    <insert id="insertFavorHouse">
+        INSERT INTO favor (user_id, house_id)
+        VALUE (#{userId}, #{houseId})
+    </insert>
+
+    <select id="selectFavorHouseList" resultType="fun.moyujian.hause.entity.view.HouseListView">
+        SELECT h.id AS id, title, specs, area, floor, type, addr, price, towards, hp.url AS firstPicUrl
+        FROM house h
+        JOIN house_pic hp ON h.id = hp.house_id
+        <if test="type == 'favor'">
+        JOIN favor f ON h.id = f.house_id
+        </if>
+        WHERE h.id > 0
+        <if test="type == 'my'">
+            AND pub_user_id = #{userId}
+        </if>
+        <if test="type == 'favor'">
+            AND f.user_id = #{userId}
+        </if>
+        <if test="keyword != null">
+            AND (
+                title LIKE CONCAT('%', #{keyword}, '%')
+                OR addr LIKE CONCAT('%', #{keyword}, '%')
+                OR community LIKE CONCAT('%', #{keyword}, '%')
+            )
+        </if>
+        GROUP BY h.id
+        ORDER BY
+        <if test="isOrderByTime == true">
+            h.create_time
+        </if>
+        <if test="isOrderByTime == false">
+            price
+        </if>
+        <if test="isAsc == true">
+            ASC
+        </if>
+        <if test="isAsc == false">
+            DESC
+        </if>
+    </select>
+
+    <select id="selectHouseDetail" resultMap="HouseDetailMap">
+        SELECT h.id AS id, title, specs, area, floor, type, addr, price, towards,
+               community, description, h.update_time AS update_time, username,
+               phone, wechat
+        FROM house h
+        JOIN user u ON u.id = h.pub_user_id
+        WHERE h.id = #{houseId}
+    </select>
+
+    <select id="selectHousePicList" resultType="java.lang.String">
+        SELECT url
+        FROM house_pic
+        WHERE house_id = #{id}
+    </select>
+</mapper>

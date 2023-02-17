@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 15/02/2023 11:12:23
+ Date: 16/02/2023 23:03:16
 */
 
 SET NAMES utf8mb4;
@@ -46,7 +46,7 @@ CREATE TABLE `house`  (
   `price` decimal(10, 2) NOT NULL COMMENT '价格',
   `towards` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '朝向（南/北/东/西）',
   `community` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '小区名称',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文字描述',
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '文字描述',
   `pub_user_id` int UNSIGNED NOT NULL COMMENT '发布者id',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
@@ -54,7 +54,7 @@ CREATE TABLE `house`  (
   INDEX `search_idx`(`title`, `addr`, `community`) USING BTREE,
   INDEX `pub_user_fk`(`pub_user_id`) USING BTREE,
   CONSTRAINT `pub_user_fk` FOREIGN KEY (`pub_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '出租房表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '出租房表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for house_pic
@@ -68,7 +68,7 @@ CREATE TABLE `house_pic`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `house_id_fk`(`house_id`) USING BTREE,
   CONSTRAINT `house_id_fk` FOREIGN KEY (`house_id`) REFERENCES `house` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '出租房图片表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '出租房图片表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user
@@ -84,6 +84,6 @@ CREATE TABLE `user`  (
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username_idx`(`username`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -2,6 +2,7 @@ package fun.moyujian.hause.entity.view;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户信息视图
@@ -10,6 +11,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserInfoView {
 
     private String username;

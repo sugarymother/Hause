@@ -8,6 +8,9 @@
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
     <contextName>logback</contextName>
 
+    <!-- 关闭logback自身输出的日志 -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
     <!-- 日志输出路径 -->
     <property name="log.path" value="./log"/>
 
@@ -51,7 +54,7 @@
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
             <!--日志文件保留天数-->
-            <maxHistory>1</maxHistory>
+            <maxHistory>7</maxHistory>
         </rollingPolicy>
         <!-- 此日志文件只记录debug级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -153,16 +156,6 @@
     -->
     <!--<logger name="org.springframework.web" level="info"/>-->
     <!--<logger name="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="INFO"/>-->
-    <!-- 开发环境 -->
-    <springProfile name="dev">
-        <logger name="fun.moyujian.*" level="debug"/>
-        <logger name="fun.moyujian.hause.mapper" level="info"/>
-    </springProfile>
-    <!-- 线上环境 -->
-    <springProfile name="prod">
-        <logger name="fun.moyujian.*" level="info"/>
-    </springProfile>
-
 
     <!--
         root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性
@@ -171,11 +164,11 @@
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
     <root level="info">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="DEBUG_FILE" />
-        <appender-ref ref="INFO_FILE" />
-        <appender-ref ref="WARN_FILE" />
-        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARN_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </root>
 
 </configuration>
