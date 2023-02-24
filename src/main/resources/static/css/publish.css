@@ -1,0 +1,97 @@
+.form_box form input {
+    padding: 5px 2px 5px 2px;
+    border-radius: 3px;
+    height: 22px;
+    width: 220px;
+}
+.form_box form label {
+    display: block;
+    letter-spacing: 3px;
+    line-height: 34px;
+}
+.form_box {
+    width: 30%;
+    min-width: 400px;
+    padding: 50px 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 6px #00000026;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+.form_box form input.num_input {
+    display: inline;
+    width: 44px;
+}
+.form_box form input.num_input.price_input {
+    width: 76px;
+}
+.form_box form label.radio_label {
+    display: inline;
+}
+.form_box form input.radio_input {
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin: 0;
+    transform: translateY(2px);
+}
+#descIn {
+    width: 220px;
+    height: 40px;
+    resize: vertical;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 3px;
+    letter-spacing: normal;
+    transform: translateY(5px);
+}
+.btn_box {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+#SubmitBtn {
+    background-color: #00a7cd;
+    border: none;
+    height: 26px;
+    width: 60%;
+    border-radius: 15px;
+    color: #ffffff;
+    margin-top: 15px;
+    letter-spacing: 10px;
+    font-size: 16px;
+}
+#SubmitBtn:hover {
+    background-color: #00c0eb;
+}
+li input.pic_input {
+    border: none;
+    padding: 0;
+}
+ul {
+    width: 100%;
+}
+li {
+    margin: 3px 0 3px 0;
+    width: 100%;
+    list-style-type: none;
+}
+.del_pic_btn {
+    font-size: 12px;
+    border: none;
+    background: none;
+    color: #00a7cd;
+    border-bottom: 1px solid #00a7cd;
+    visibility: hidden;
+}
+.del_pic_btn:hover {
+    color: #007a94;
+    border-bottom: 1px solid #007a94;
+}
+/*body {*/
+/*    background: #ffffff;*/
+/*}*/

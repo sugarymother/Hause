@@ -1,0 +1,66 @@
+.user_info_box {
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: #00000026;
+    padding: 30px 10px 20px 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.user_info_box img {
+    height: 60px;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    border-radius: 30px;
+    border: 4px solid #ffffff;
+}
+.username {
+    color: #606060;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+.info_line {
+    margin-bottom: 5px;
+}
+.info_line input {
+    height: 24px;
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-right: 1px;
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+input{
+    -moz-appearance:textfield;
+}
+.info_line input.off {
+    background: none;
+    border: none;
+}
+.info_line label {
+    color: #4b4b4b;
+}
+.info_line button {
+    background: none;
+    padding: 3px 5px 3px 5px;
+    font-size: 12px;
+    color: #0079dc;
+    border: 1px solid #0079dc;
+    border-radius: 5px;
+}
+.info_line button:hover {
+    color: #0046b2;
+    border: 1px solid #0046b2;
+}

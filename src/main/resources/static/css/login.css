@@ -1,0 +1,55 @@
+.login_box {
+    position: absolute;
+    background-color: #ffffff;
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 3px 6px #00000026;
+    border-radius: 6px;
+    max-width: 300px;
+    min-width: 240px;
+}
+.login_box img {
+    margin-top: 40px;
+    height: 40px;
+    margin-bottom: 30px;
+}
+.login_box input {
+    margin-bottom: 15px;
+    width: 75%;
+}
+#SubmitBtn {
+    background-color: #00a7cd;
+    border: none;
+    height: 26px;
+    width: 60%;
+    border-radius: 15px;
+    color: #ffffff;
+    margin-top: 5px;
+    letter-spacing: 10px;
+    font-size: 16px;
+}
+#SubmitBtn:hover {
+    background-color: #00c0eb;
+}
+#ModeBtn {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background: none;
+    border: none;
+    font-size: 12px;
+    border-bottom: 1px solid #5c8b95;
+    color:#5c8b95;
+}
+#ModeBtn:hover {
+    color: #78b3c0;
+}
+.msg_txt {
+    font-size: 12px;
+    color: #eb3f00;
+    visibility: hidden;
+}

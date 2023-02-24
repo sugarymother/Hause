@@ -1,5 +1,6 @@
 package fun.moyujian.hause.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import fun.moyujian.hause.entity.House;
 import fun.moyujian.hause.entity.form.HouseInfoForm;
@@ -50,6 +51,9 @@ public class HouseServiceImpl implements HouseService {
         // 房子图片保存到指定位置并生成url
         List<String> urlList = new ArrayList<>();
         for(var base64 : form.getBase64PicList()) {
+            if (Strings.isEmpty(base64)) {
+                continue;
+            }
             String filename = Base64PicUtil.decodeAndSavePic(base64, picSavingPath);
             urlList.add(picUrlSuffix + filename);
         }
@@ -106,7 +110,21 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public void favorHouse(String token, Long houseId) {
-        houseMapper.insertFavorHouse(JwtUtil.getChaimUserId(token), houseId);
+    public void favorHouse(String token, Long houseId, boolean favor) {
+        Long userId = JwtUtil.getChaimUserId(token);
+        if (isFavor(token, houseId)) {
+            if (!favor) {
+                houseMapper.deleteFavorHouse(userId, houseId);
+            }
+        } else {
+            if (favor) {
+                houseMapper.insertFavorHouse(userId, houseId);
+            }
+        }
+    }
+
+    @Override
+    public boolean isFavor(String token, Long houseId) {
+        return houseMapper.selectFavorCount(JwtUtil.getChaimUserId(token), houseId) > 0;
     }
 }

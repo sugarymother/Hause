@@ -32,10 +32,16 @@
             (#{picUrl}, #{houseId})
         </foreach>
     </insert>
+
     <insert id="insertFavorHouse">
         INSERT INTO favor (user_id, house_id)
         VALUE (#{userId}, #{houseId})
     </insert>
+
+    <delete id="deleteFavorHouse">
+        DELETE FROM favor
+        WHERE house_id = #{houseId} AND user_id = #{userId}
+    </delete>
 
     <select id="selectFavorHouseList" resultType="fun.moyujian.hause.entity.view.HouseListView">
         SELECT h.id AS id, title, specs, area, floor, type, addr, price, towards, hp.url AS firstPicUrl
@@ -87,5 +93,10 @@
         SELECT url
         FROM house_pic
         WHERE house_id = #{id}
+    </select>
+    <select id="selectFavorCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM favor
+        WHERE house_id = #{houseId} AND user_id = #{userId}
     </select>
 </mapper>

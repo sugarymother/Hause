@@ -49,17 +49,17 @@ public class HouseServiceTest {
     @Test
     public void publishHouseTest() {
         HouseInfoForm houseInfoForm = new HouseInfoForm();
-        houseInfoForm.setTitle("测试房4");
+        houseInfoForm.setTitle("测试房11");
         houseInfoForm.setSpecs("3室1厅2卫");
         houseInfoForm.setArea("20平");
         houseInfoForm.setFloor("6/6层");
         houseInfoForm.setType("合租");
         houseInfoForm.setAddr("西红柿 叉叉区 老头环路2号");
-        houseInfoForm.setPrice(2800.00);
+        houseInfoForm.setPrice(1000.00);
         houseInfoForm.setTowards("朝东");
         houseInfoForm.setCommunity("老奶奶花园");
         houseInfoForm.setDescription("另一个b，嘎嘎嘎嘎嘎");
-        houseInfoForm.setBase64PicList(List.of(pic1, pic2));
+        houseInfoForm.setBase64PicList(List.of(pic2));
 
         houseService.publishHouse(userService.login(
                 new UserLoginForm("test02", "123456")
@@ -83,7 +83,8 @@ public class HouseServiceTest {
     public void favorHouseTest() {
         houseService.favorHouse(
                 userService.login(new UserLoginForm("test02", "123456")),
-                17L
+                17L,
+                true
         );
     }
 

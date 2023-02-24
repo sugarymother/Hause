@@ -1,0 +1,79 @@
+.header {
+    z-index: 11;
+    position: fixed;
+    width: 100%;
+    background-color: #E1EFF3;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    box-shadow: 0 3px 6px #00000026;
+    color: #3f646e;
+    font-size: 12px;
+}
+.header_title {
+    position: absolute;
+    left: 20px;
+    height: 32px;
+    padding-top: 2px;
+    cursor: pointer;
+}
+#UsernameTxt {
+    font-size: 12px;
+}
+.exit_login_btn {
+    background: none;
+    border: none;
+    letter-spacing: 2px;
+    font-size: 12px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #3f646e;
+}
+.exit_login_btn:hover {
+    color: #79bac8;
+}
+.header_user_icon {
+    height: 27px;
+    width: 25px;
+    margin-right: 10px;
+    padding-top: 2px;
+    margin-top: 4px;
+}
+.header_user_item_list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-25px, -20px);
+    background-color: #ffffff;
+    padding: 8px 0 8px 0;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #00000026;
+    visibility: hidden;
+}
+.header_user_item_list button {
+    border: none;
+    width: 70px;
+    background: none;
+    color: #718d94;
+    margin: 0 5px 0 5px;
+}
+.header_user_item_list button:hover {
+    background: #f3f3f3;
+}
+#PubBtn {
+    margin-right: 40px;
+    background: #00a7cd;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+    visibility: hidden;
+}
+#PubBtn:hover {
+    background: #008ba9;
+}

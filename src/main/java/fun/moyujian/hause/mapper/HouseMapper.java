@@ -52,4 +52,19 @@ public interface HouseMapper extends BaseMapper<House> {
      * @param houseId 房子id
      */
     void insertFavorHouse(Long userId, Long houseId);
+
+    /**
+     * 删除房子收藏
+     * @param userId 用户id
+     * @param houseId 房子id
+     */
+    void deleteFavorHouse(Long userId, Long houseId);
+
+    /**
+     * 查找房子收藏
+     * @param userId 用户id
+     * @param houseId 房子id
+     * @return 条数
+     */
+    int selectFavorCount(Long userId, Long houseId);
 }

@@ -56,11 +56,19 @@ public interface HouseService {
     HouseDetailView getHouseDetail(Long houseId);
 
     /**
-     * 添加房子到收藏
+     * 添加房子到收藏，或取消收藏
+     * @param token token
+     * @param houseId 房子id
+     * @param favor 是否收藏（收藏/取消收藏）
+     */
+    void favorHouse(String token, Long houseId, boolean favor);
+
+    /**
+     * 判断是否已收藏
      * @param token token
      * @param houseId 房子id
      */
-    void favorHouse(String token, Long houseId);
+    boolean isFavor(String token, Long houseId);
 
     /**
      * 获取租房列表的类型

@@ -47,7 +47,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 //允许的请求源
-                .allowedOrigins(allowedOrigin)
+                .allowedOriginPatterns(allowedOrigin)
                 //允许的请求方式
                 .allowedMethods("POST","GET")
                 //允许的请求头

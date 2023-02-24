@@ -13,4 +13,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuthToken {
     boolean required() default true;
+    boolean redirect() default false;
 }

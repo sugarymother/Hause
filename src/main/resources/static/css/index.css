@@ -1,0 +1,139 @@
+.search_box {
+    margin-top: 80px;
+    background: #ffffff;
+    padding: 5px 15px 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    min-width: 360px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 6px #00000026;
+}
+.search_box img {
+    height: 20px;
+    cursor: pointer;
+}
+.search_box input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.house_list_header {
+    min-width: 600px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    width: 55%;
+    background: #ffffff;
+    padding: 5px 10px 5px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 6px #00000026;
+    position: relative;
+}
+.house_list_header button {
+    border: none;
+    background: none;
+    margin: 3px 5px 3px 5px;
+    font-size: 12px;
+    color: #969696;
+}
+.house_list_header button:hover {
+    color: #335259;
+}
+.house_list_header button.on {
+    color: #335259;
+}
+.house_list_box {
+    min-width: 600px;
+    width: 55%;
+}
+.house_list_box ul li {
+    background: #ffffff;
+    padding: 15px 15px 15px 15px;
+    border-radius: 8px;
+    display: flex;
+    margin-bottom: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 6px #00000026;
+}
+.house_img {
+    object-fit:cover;
+    width: 240px;
+    height: 160px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+.house_info_area {
+    width: calc(100% - 240px);
+    position: relative;
+}
+.list_title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;  /* 超出部分省略号 */
+    word-break: break-all;  /* break-all(允许在单词内换行。) */
+    display: -webkit-box; /* 对象作为伸缩盒子模型显示 */
+    -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    -webkit-line-clamp: 2;
+}
+.house_type {
+    display: inline;
+    padding: 1px 4px 1px 4px;
+    background: #426c77;
+    color: #eeeeee;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.house_info {
+    display: inline;
+    color: #21353b;
+}
+.house_addr {
+    margin-top: 5px;
+    color: #7b7b7b;
+}
+.house_price {
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffd100;
+    font-weight: bold;
+}
+#OrderByBtn {
+    position: absolute;
+    right: 35px;
+}
+#OrderBtn {
+    margin-top: 1px;
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}
+.bkg {
+    object-fit:cover;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    height: 280px;
+    top: 40px;
+}
+.house_list_box ul li.list_ending {
+    font-size: 12px;
+    color: #3f646e;
+    text-align: center;
+    background: none;
+    border: none;
+    display: block;
+    box-shadow: none;
+    cursor: default;
+}
