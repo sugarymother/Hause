@@ -1,8 +1,6 @@
 # 蛤租房 Hause 网站项目
 毕业设计实践，采用 SpringBoot3.0 + SpringMVC + Mybatis-plus + FreeMaker 模板引擎。
 
-线上效果：[蛤租房网站](https://moyujian.fun/hause)
-
 ### 待解问题
 - [X] publish页 radio单选框取得数据不是选中的项。
 - [X] 主页、search页、myhouse页的房源列表下拉刷新时随机出现表项被添加两次的情况。
