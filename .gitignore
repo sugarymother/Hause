@@ -35,3 +35,5 @@ build/
 log/
 ### 图片上传目录 ###
 picUpload/
+### prod配置文件 ###
+application-prod.properties

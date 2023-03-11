@@ -19,13 +19,14 @@ $(function () {
         let password = $PasswordIn.val()
         let phone = $PhoneIn.val()
         let wechat = $WechatIn.val()
+        let md5 = $.md5(password)
 
         if (username === "" || password === ""
             || phone === "" || wechat === "") {
             $msgTxt.text("请完整填写信息")
             $msgTxt.css('visibility', 'visible')
         } else {
-            registerRequest(username, password, phone, wechat, function () {
+            registerRequest(username, md5, phone, wechat, function () {
                 $msgTxt.text("注册失败，用户名已存在")
                 $msgTxt.css('visibility', 'visible')
             })

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
         // 检查用户名是否已存在
         QueryWrapper<User> wrapper = Wrappers.query();
-        wrapper.eq("username", user.getUsername());
+        wrapper.lambda().eq(User::getUsername, user.getUsername());
         if(userMapper.exists(wrapper)) {
             // 用户名已存在
             log.info("用户注册失败，用户名：" + user.getUsername() + " 已存在。");
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         String password = EncryptUtil.encrypt(form.getPassword());
 
         QueryWrapper<User> wrapper = Wrappers.query();
-        wrapper.eq("username", form.getUsername());
+        wrapper.lambda().eq(User::getUsername, form.getUsername());
         if (!userMapper.exists(wrapper)) {
             // 用户名不存在
             log.info("用户登录失败，用户名：" + form.getUsername() + " 不存在。");

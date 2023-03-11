@@ -13,6 +13,7 @@
     <version>1.0.0</version>
     <name>Hause</name>
     <description>Hause</description>
+<!--    <packaging>war</packaging>-->
     <properties>
         <java.version>17</java.version>
     </properties>

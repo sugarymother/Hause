@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="/hause/static/favicon.ico">
     <link rel="bookmark" type="image/x-icon" href="/hause/static/favicon.ico">
     <script src="/hause/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/hause/static/js/jquery.md5.js"></script>
 </head>
 
 <body>

@@ -15,12 +15,13 @@ $(function () {
     $('#SubmitBtn').click(function () {
         let username = $UsernameIn.val()
         let password = $PasswordIn.val()
+        let md5 = $.md5(password)
 
         if (username === "" || password === "") {
             $msgTxt.text("请完整填写登录信息")
             $msgTxt.css('visibility', 'visible')
         } else {
-            loginRequest(username, password, function () {
+            loginRequest(username, md5, function () {
                 $msgTxt.text("登陆失败，用户名或密码错误")
                 $msgTxt.css('visibility', 'visible')
             })
