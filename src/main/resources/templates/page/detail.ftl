@@ -50,11 +50,17 @@
                     <b>所在地址 </b><p>${(houseDetail.addr)!"无"}</p>
                 </div>
                 <div class="house_publisher_area">
-                    <img src="/hause/static/img/user_large.png" alt="user_ico">
-                    <div class="publisher_info">
-                        <div class="pub_username">${(houseDetail.pubUserInfo.username)!"用户名"}</div>
-                        <div>电话：${(houseDetail.pubUserInfo.phone)!"电话"}</div>
-                        <div>微信：${(houseDetail.pubUserInfo.wechat)!"微信"}</div>
+                    <div class="info_area">
+                        <img src="/hause/static/img/user_large.png" alt="user_ico">
+                        <div class="publisher_info">
+                            <div class="pub_username">${(houseDetail.pubUserInfo.username)!"用户名"}</div>
+                            <div>电话：${(houseDetail.pubUserInfo.phone)!"电话"}</div>
+                            <div>微信：${(houseDetail.pubUserInfo.wechat)!"微信"}</div>
+                        </div>
+                    </div>
+                    <div class="publisher_btn_box">
+                        <button type="button" id="contactBtn">联系发布者</button>
+                        <button type="button" id="signBtn">立即签约</button>
                     </div>
                 </div>
             </div>

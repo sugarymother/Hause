@@ -82,9 +82,12 @@
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
     padding: 8px;
     border-radius: 5px;
-    display: flex;
     width: 100%;
     background-image: linear-gradient(to bottom right, rgb(235, 246, 255), rgb(102, 229, 255));
+}
+.house_publisher_area div.info_area {
+    display: flex;
+    margin-bottom: 10px;
 }
 .publisher_info {
     margin-left: 8px;
@@ -185,4 +188,38 @@
     height: 12px;
     margin-right: 3px;
     transform: translateY(1px);
+}
+.publisher_btn_box {
+    display: flex;
+    width: 100%;
+}
+.publisher_btn_box button {
+    height: 30px;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    background: none;
+    border: 1px solid #00a7cd;
+    color: #00a7cd;
+}
+#contactBtn {
+    flex: 1;
+    margin: 0 5px 0 5px;
+}
+#signBtn {
+    flex: 1;
+    margin: 0 5px 0 5px;
+    border: none;
+    color: #00a7cd;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom right, rgb(175, 233, 255), rgb(236, 247, 255));
+    transition: all 0.3s ease-in-out;
+}
+
+#signBtn:hover {
+    color: #3cc6e7;
+    background-image: linear-gradient(to bottom right, rgb(198, 237, 255), rgb(255, 255, 255));
+}
+#contactBtn:hover {
+    border: 1px solid #007891;
+    color: #007891;
 }

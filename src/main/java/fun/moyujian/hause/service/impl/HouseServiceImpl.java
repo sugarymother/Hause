@@ -1,6 +1,5 @@
 package fun.moyujian.hause.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import fun.moyujian.hause.entity.House;
 import fun.moyujian.hause.entity.form.HouseInfoForm;
@@ -42,6 +41,7 @@ public class HouseServiceImpl implements HouseService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void publishHouse(String token, HouseInfoForm form) {
+        untiXssForHouseInfoForm(form);
         House house = new House();
         BeanUtils.copyProperties(form, house);
         house.setPubUserId(JwtUtil.getChaimUserId(token));
@@ -126,5 +126,23 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public boolean isFavor(String token, Long houseId) {
         return houseMapper.selectFavorCount(JwtUtil.getChaimUserId(token), houseId) > 0;
+    }
+
+    private void untiXssForHouseInfoForm(HouseInfoForm form) {
+        form.setTitle(replaceJsChar(form.getTitle()));
+        form.setSpecs(replaceJsChar(form.getSpecs()));
+        form.setArea(replaceJsChar(form.getArea()));
+        form.setFloor(replaceJsChar(form.getFloor()));
+        form.setType(replaceJsChar(form.getType()));
+        form.setAddr(replaceJsChar(form.getAddr()));
+        form.setTowards(replaceJsChar(form.getTowards()));
+        form.setCommunity(replaceJsChar(form.getCommunity()));
+        form.setDescription(replaceJsChar(form.getDescription()));
+    }
+
+    private String replaceJsChar(String str) {
+        return str.replace("<", " ")
+                .replace(">", " ")
+                .replace("\"", "“");
     }
 }

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * JWT工具类
@@ -26,17 +27,24 @@ public class JwtUtil {
     private final static String ISSUER = "moyujian";
 
     /**
+     * 为了解决多点登录问题而设
+     * 当再次签发token时，使之前签发的token全部失效
+     */
+    private final static HashMap<Long, String> tokenMap = new HashMap<>(64);
+
+    /**
      * 签发Token
      * @param userId 用户id
      * @return 令牌
      */
     public static String signToken(Long userId) {
+        //签发时间
+        Date issuedAt = new Date();
+        String token;
         try {
-            //签发时间
-            Date issuedAt = new Date();
             //HMAC256加密实例
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
-            return JWT.create()
+            token = JWT.create()
                     //JWT签发方
                     .withIssuer(ISSUER)
                     //JWT接受者
@@ -50,6 +58,8 @@ public class JwtUtil {
             log.error("Token签发工具类>签发Token异常:{}", e.getMessage());
             throw new RuntimeException("Token签发工具类>签发Token异常:" + e.getMessage());
         }
+        tokenMap.put(userId, token);
+        return token;
     }
 
     /**
@@ -68,11 +78,12 @@ public class JwtUtil {
             } catch (JWTVerificationException e) {
                 return false;
             }
-            return true;
         } catch (UnsupportedEncodingException e) {
             log.error("Token签发工具类>Token校验异常:{}", e.getMessage());
             throw new RuntimeException("Token签发工具类>Token校验异常:" + e.getMessage());
         }
+        Long userId = getChaimUserId(token);
+        return token.equals(tokenMap.getOrDefault(userId, ""));
     }
 
     /**
