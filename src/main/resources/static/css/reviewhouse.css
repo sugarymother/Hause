@@ -1,0 +1,38 @@
+.my_list_box {
+    margin-top: 70px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 6px #00000026;
+    padding: 40px 30px 40px 30px;
+}
+table {
+    border-collapse: collapse;
+}
+th {
+    background-color: rgb(248,248,248);
+}
+table tr, td, th {
+    border: 1px solid rgb(223,226,229);
+    padding: 8px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    max-width: 260px;
+}
+.del_btn {
+    background: none;
+    border: none;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #00a7cd;
+    color: #00a7cd;
+}
+.del_btn:hover {
+    border-bottom: 1px solid #1b739a;
+    color: #1b739a;
+}
+.ending {
+    margin-top: 20px;
+    color: #ababab;
+    text-align: center;
+}

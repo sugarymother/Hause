@@ -1,7 +1,6 @@
 package fun.moyujian.hause.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import fun.moyujian.hause.entity.User;
 import fun.moyujian.hause.entity.form.UserInfoForm;
@@ -13,7 +12,6 @@ import fun.moyujian.hause.service.UserService;
 import fun.moyujian.hause.util.EncryptUtil;
 import fun.moyujian.hause.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

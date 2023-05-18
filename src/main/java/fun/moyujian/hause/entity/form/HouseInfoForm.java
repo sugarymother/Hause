@@ -36,6 +36,8 @@ public class HouseInfoForm {
 
     private String description;
 
+    private Integer status;
+
     /**
      * 房子base64图片列表
      */

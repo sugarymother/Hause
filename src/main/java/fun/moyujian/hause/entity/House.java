@@ -39,6 +39,8 @@ public class House {
 
     private Long pubUserId;
 
+    private Integer status;
+
     private Date createTime;
 
     private Date updateTime;

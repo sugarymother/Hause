@@ -25,6 +25,8 @@ public class User {
 
     private String wechat;
 
+    private Boolean admin;
+
     private Date createTime;
 
     private Date updateTime;

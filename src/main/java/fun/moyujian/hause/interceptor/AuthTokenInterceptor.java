@@ -1,9 +1,13 @@
 package fun.moyujian.hause.interceptor;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import fun.moyujian.hause.annotation.AuthToken;
 import fun.moyujian.hause.common.Constants;
+import fun.moyujian.hause.entity.User;
 import fun.moyujian.hause.exception.AuthTokenException;
+import fun.moyujian.hause.mapper.UserMapper;
 import fun.moyujian.hause.util.JwtUtil;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +25,9 @@ import java.lang.reflect.Method;
  */
 @Component
 public class AuthTokenInterceptor implements HandlerInterceptor {
+
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -56,6 +63,12 @@ public class AuthTokenInterceptor implements HandlerInterceptor {
                     return false;
                 }
                 throw new AuthTokenException("token无效或缺失", cookieValue);
+            }
+
+            if (annotation.checkAdmin()) {
+                Long userId = JwtUtil.getChaimUserId(cookieValue);
+                User user = userMapper.selectOne(Wrappers.<User>query().lambda().eq(User::getId, userId));
+                return user.getAdmin() != null && user.getAdmin();
             }
         }
 

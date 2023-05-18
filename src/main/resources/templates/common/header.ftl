@@ -1,5 +1,6 @@
 <div class="header">
     <img class="header_title" src="/hause/static/img/title.png" alt="title">
+    <div id="isAdmin" style="visibility: hidden">${(userInfo.admin?c)!"false"}</div>
     <button id="PubBtn" type="button">我要出租</button>
     <div>
         <img class="header_user_icon" src="/hause/static/img/user_icon.png" alt="user_icon">

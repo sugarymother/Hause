@@ -104,6 +104,17 @@ public class PageController {
     }
 
     /**
+     * 审核房源页
+     */
+    @RequestMapping(path = "/house/review", method = {RequestMethod.GET, RequestMethod.POST})
+    @AuthToken(redirect = true, checkAdmin = true)
+    public String reviewHousePage(@CookieValue(Constants.COOKIE_NAME) String token, Model model) {
+        UserInfoView userInfo = userService.getUserInfo(token);
+        model.addAttribute("userInfo", userInfo);
+        return "page/reviewhouse";
+    }
+
+    /**
      * 我的信息页
      */
     @RequestMapping(path = "/user/info", method = {RequestMethod.GET, RequestMethod.POST})

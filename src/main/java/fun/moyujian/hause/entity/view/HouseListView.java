@@ -32,6 +32,10 @@ public class HouseListView {
 
     private String towards;
 
+    private Integer statusCode;
+
+    private String status;
+
     /**
      * 首张图片url
      */

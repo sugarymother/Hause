@@ -1,5 +1,6 @@
 let headerShowUI = true
 let headerUrlSuffix = "./"
+let isAdmin = false
 
 function hideHeaderUI() {
     headerShowUI = false
@@ -8,7 +9,7 @@ function hideHeaderUI() {
 }
 
 function showHeaderPubBtn() {
-    $('#PubBtn').css('visibility', 'visible')
+    if (!isAdmin) $('#PubBtn').css('visibility', 'visible')
 }
 
 function setHeaderUrlSuffix(suffix) {
@@ -16,6 +17,10 @@ function setHeaderUrlSuffix(suffix) {
 }
 
 $(function() {
+    if ($('#isAdmin').text() === 'true') {
+        isAdmin = true
+    }
+
     let userItemListDOM = $('.header_user_item_list')
 
     // 头像悬停事件
@@ -52,9 +57,17 @@ $(function() {
     })
 
     // 我的出租点击事件
-    $('#MyHouseBtn').click(function () {
-        window.open(headerUrlSuffix + 'house/my')
-    })
+    let $MyHouseBtn = $('#MyHouseBtn');
+    if (isAdmin) {
+        $MyHouseBtn.text("房源审核")
+        $MyHouseBtn.click(function () {
+            window.open(headerUrlSuffix + 'house/review')
+        })
+    } else {
+        $MyHouseBtn.click(function () {
+            window.open(headerUrlSuffix + 'house/my')
+        })
+    }
 
     // 我的信息点击事件
     $('#MyInfoBtn').click(function () {

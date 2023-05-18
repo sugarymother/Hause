@@ -19,4 +19,6 @@ public class UserInfoView {
     private String phone;
 
     private String wechat;
+
+    private Boolean admin;
 }

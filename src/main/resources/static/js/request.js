@@ -191,10 +191,74 @@ function getMyHouseListRequest(page, callbackOnSuc) {
     });
 }
 
+// 获取审核列表请求
+function getAdminHouseListRequest(page, callbackOnSuc) {
+    $.ajax({
+        url: '/hause/bev1/house/review',
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        data: {
+            "pageNum": page,
+            "pageSize": 30
+        },
+        success: (data) => {
+            if (data.code === 10000) {
+                callbackOnSuc(data.data)
+            } else {
+                console.error("请求失败，状态码：" + data.code)
+            }
+        }
+    });
+}
+
 // 删除房子请求
 function deleteHouseRequest(houseId, callbackOnSuc) {
     $.ajax({
         url: '/hause/bev1/house/delete',
+        method: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
+        data: {
+            "houseId": houseId
+        },
+        success: (data) => {
+            if (data.code === 10000) {
+                callbackOnSuc(data.data)
+            } else {
+                console.error("请求失败，状态码：" + data.code)
+            }
+        }
+    });
+}
+
+// 驳回房子请求
+function rejectHouseRequest(houseId, callbackOnSuc) {
+    $.ajax({
+        url: '/hause/bev1/house/reject',
+        method: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
+        data: {
+            "houseId": houseId
+        },
+        success: (data) => {
+            if (data.code === 10000) {
+                callbackOnSuc(data.data)
+            } else {
+                console.error("请求失败，状态码：" + data.code)
+            }
+        }
+    });
+}
+
+// 通过房子请求
+function passHouseRequest(houseId, callbackOnSuc) {
+    $.ajax({
+        url: '/hause/bev1/house/pass',
         method: "POST",
         xhrFields: {
             withCredentials: true

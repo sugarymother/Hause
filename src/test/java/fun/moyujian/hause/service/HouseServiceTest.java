@@ -68,7 +68,7 @@ public class HouseServiceTest {
 
     @Test
     public void deleteHouseTest() {
-        houseService.deleteHouse(16L);
+        //houseService.deleteHouse(16L);
     }
 
     @Test

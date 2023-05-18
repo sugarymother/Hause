@@ -2,11 +2,11 @@ package fun.moyujian.hause.controller;
 
 import fun.moyujian.hause.annotation.AuthToken;
 import fun.moyujian.hause.common.Constants;
+import fun.moyujian.hause.common.HouseStatus;
 import fun.moyujian.hause.common.ResponseCode;
 import fun.moyujian.hause.common.ResponseView;
 import fun.moyujian.hause.entity.form.HouseInfoForm;
 import fun.moyujian.hause.entity.view.HouseListView;
-import fun.moyujian.hause.mapper.HouseMapper;
 import fun.moyujian.hause.service.HouseService;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,6 +62,23 @@ public class HouseController {
         return ResponseView.getInstance(ResponseCode.SUC, houseList);
     }
 
+    @GetMapping(path = "/review")
+    @AuthToken(checkAdmin = true)
+    public ResponseView getReviewHouseList(@CookieValue(Constants.COOKIE_NAME) String token,
+                                       @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
+                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        List<HouseListView> houseList = houseService.getHouseList(
+                HouseService.ListOf.ADMIN_HOUSE,
+                HouseService.SortBy.TIME,
+                HouseService.Order.DESC,
+                pageNum,
+                pageSize,
+                token,
+                null
+        );
+        return ResponseView.getInstance(ResponseCode.SUC, houseList);
+    }
+
     @GetMapping(path = "/search")
     @AuthToken
     public ResponseView searchHouse(@RequestParam("keyword") String keyword,
@@ -105,8 +122,27 @@ public class HouseController {
 
     @PostMapping(path = "/delete")
     @AuthToken
-    public ResponseView deleteHouse(@RequestParam("houseId") Long houseId) {
-        houseService.deleteHouse(houseId);
+    public ResponseView deleteHouse(@RequestParam("houseId") Long houseId,
+                                    @CookieValue(Constants.COOKIE_NAME) String token) {
+        houseService.deleteHouse(token, houseId);
+        return ResponseView.getInstance(ResponseCode.SUC);
+    }
+
+    @PostMapping(path = "/reject")
+    @AuthToken(checkAdmin = true)
+    public ResponseView rejectHouse(@RequestParam("houseId") Long houseId) {
+        HouseInfoForm houseInfoForm = new HouseInfoForm();
+        houseInfoForm.setStatus(HouseStatus.REVIEW_FAILED.getCode());
+        houseService.updateHouse(houseId, houseInfoForm);
+        return ResponseView.getInstance(ResponseCode.SUC);
+    }
+
+    @PostMapping(path = "/pass")
+    @AuthToken(checkAdmin = true)
+    public ResponseView passHouse(@RequestParam("houseId") Long houseId) {
+        HouseInfoForm houseInfoForm = new HouseInfoForm();
+        houseInfoForm.setStatus(HouseStatus.PUBLISHED.getCode());
+        houseService.updateHouse(houseId, houseInfoForm);
         return ResponseView.getInstance(ResponseCode.SUC);
     }
 }

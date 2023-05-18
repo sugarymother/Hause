@@ -44,7 +44,7 @@
     </delete>
 
     <select id="selectFavorHouseList" resultType="fun.moyujian.hause.entity.view.HouseListView">
-        SELECT h.id AS id, title, specs, area, floor, type, addr, price, towards, hp.url AS firstPicUrl
+        SELECT h.id AS id, title, specs, area, floor, type, addr, price, towards, status AS statusCode, hp.url AS firstPicUrl
         FROM house h
         JOIN house_pic hp ON h.id = hp.house_id
         <if test="type == 'favor'">
@@ -56,6 +56,13 @@
         </if>
         <if test="type == 'favor'">
             AND f.user_id = #{userId}
+            AND h.status = 1
+        </if>
+        <if test="type == 'all'">
+            AND h.status = 1
+        </if>
+        <if test="type == 'admin'">
+            AND h.status = 0
         </if>
         <if test="keyword != null">
             AND (

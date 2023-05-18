@@ -20,20 +20,37 @@ $(function () {
             '     <td>' + house.towards + '</td>' +
             '     <td>' + house.status + '</td>' +
             '     <td>' +
-            '     <button class="del_btn">删除</button>' +
+            '     <button class="del_btn" id="postDetail">详情</button>' +
+            '     <button class="del_btn" id="postReject">驳回</button>' +
+            '     <button class="del_btn" id="postPass">通过</button>' +
             '     </td>' +
             '</tr>'
         )
-        newRow.find('.del_btn').click(function () {
+        newRow.find('#postReject').click(function () {
             let houseId = house.id
-            if (confirm('确定删除标题为："' + house.title + '" 的房源吗？')) {
+            if (confirm('确定驳回标题为："' + house.title + '" 的房源吗？')) {
                 // 删除
-                deleteHouseRequest(houseId, function () {
+                rejectHouseRequest(houseId, function () {
                     flushIng = true
                     flushTable(true)
-                    alert("删除成功")
+                    alert("驳回成功")
                 })
             }
+        })
+        newRow.find('#postPass').click(function () {
+            let houseId = house.id
+            if (confirm('确定通过标题为："' + house.title + '" 的房源吗？')) {
+                // 删除
+                passHouseRequest(houseId, function () {
+                    flushIng = true
+                    flushTable(true)
+                    alert("通过成功")
+                })
+            }
+        })
+        newRow.find('#postDetail').click(function () {
+            let houseId = house.id
+            window.open('./detail/' + houseId)
         })
         $table.append(newRow)
     }
@@ -59,7 +76,7 @@ $(function () {
             ))
             $('.ending').hide()
         }
-        getMyHouseListRequest(page, function (data) {
+        getAdminHouseListRequest(page, function (data) {
             if (data.length === 0) {
                 haveMorePage = false
                 $('.ending').show()

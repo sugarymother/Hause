@@ -1,6 +1,8 @@
 package fun.moyujian.hause.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import fun.moyujian.hause.common.HouseStatus;
 import fun.moyujian.hause.entity.House;
 import fun.moyujian.hause.entity.form.HouseInfoForm;
 import fun.moyujian.hause.entity.view.HouseDetailView;
@@ -62,9 +64,13 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public void deleteHouse(Long houseId) {
+    public void deleteHouse(String token, Long houseId) {
         // ps：这里做了真删除，一般建议做成状态删除，不要将数据物理的删除掉
-        houseMapper.deleteById(houseId);
+        houseMapper.delete(
+                Wrappers.<House>update().lambda()
+                        .eq(House::getId, houseId)
+                        .eq(House::getPubUserId, JwtUtil.getChaimUserId(token))
+        );
     }
 
     @Override
@@ -101,7 +107,15 @@ public class HouseServiceImpl implements HouseService {
         houseMapper.selectFavorHouseList(page, type.getType(),
                 isOrderByTime, isAsc, userId, keyword);
 
-        return page.getRecords();
+        List<HouseListView> houseListViewList = page.getRecords();
+        for (HouseListView houseListView : houseListViewList) {
+            HouseStatus houseStatus = HouseStatus.getByCode(houseListView.getStatusCode());
+            if (houseStatus != null) {
+                houseListView.setStatus(houseStatus.getStatus());
+            }
+        }
+
+        return houseListViewList;
     }
 
     @Override

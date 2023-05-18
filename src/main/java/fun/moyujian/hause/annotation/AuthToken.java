@@ -14,4 +14,9 @@ import java.lang.annotation.Target;
 public @interface AuthToken {
     boolean required() default true;
     boolean redirect() default false;
+
+    /**
+     * 检查是否为系统管理员用户
+     */
+    boolean checkAdmin() default false;
 }

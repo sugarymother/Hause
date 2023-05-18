@@ -23,8 +23,9 @@ public interface HouseService {
     /**
      * 删除出租房
      * @param houseId 出租房id
+     * @param token token
      */
-    void deleteHouse(Long houseId);
+    void deleteHouse(String token, Long houseId);
 
     /**
      * 更新出租房
@@ -77,6 +78,7 @@ public interface HouseService {
         ALL_HOUSE("all"),      // 所有房子
         MY_HOUSE("my"),        // 我发布的房子
         FAVOR_HOUSE("favor"),  // 我收藏的房子
+        ADMIN_HOUSE("admin")   // 管理员审核房子
         ;
 
         private final String type;
